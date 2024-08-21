@@ -7,6 +7,7 @@ with fct_worker_shifts as (
 select
 
     taxi_id
+    , shift
     , shift_total_earnings
 
 from

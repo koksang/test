@@ -13,7 +13,6 @@ from pathlib import Path
 from textwrap import dedent
 
 from airflow.models import DAG
-from airflow.operators.python import PythonOperator
 from airflow.providers.google.cloud.operators.bigquery import (
     BigQueryCreateExternalTableOperator,
 )
@@ -29,7 +28,7 @@ from cosmos import (
     RenderConfig,
 )
 from cosmos.constants import InvocationMode
-from include.constants.dbt import DBT_IMAGE, DBT_PROJECT_DIR, PROFILE_CONFIG
+from include.constants.dbt import DBT_PROJECT_DIR, PROFILE_CONFIG
 from pendulum import datetime
 
 BUCKET = os.environ["BUCKET"]
@@ -55,16 +54,17 @@ with DAG(
     params=PARAMS,
     default_args=DEFAULT_ARGS,
 ) as dag:
-    bq_to_gcs = BigQueryToGCSOperator(
-        task_id="bq_to_gcs",
-        source_project_dataset_table=f"bigquery-public-data.{DATASET}.{TABLE}",
-        destination_cloud_storage_uris=[f"gs://{BUCKET}/{GCS_OBJECT_URI}"],
-        export_format=FORMAT,
-        compression=COMPRESSION,
-        labels=dict(
-            task_id="bq_to_gcs",
-        ),
-    )
+
+    # bq_to_gcs = BigQueryToGCSOperator(
+    #     task_id="bq_to_gcs",
+    #     source_project_dataset_table=f"bigquery-public-data.{DATASET}.{TABLE}",
+    #     destination_cloud_storage_uris=[f"gs://{BUCKET}/{GCS_OBJECT_URI}"],
+    #     export_format=FORMAT,
+    #     compression=COMPRESSION,
+    #     labels=dict(
+    #         task_id="bq_to_gcs",
+    #     ),
+    # )
 
     create_table = BigQueryCreateExternalTableOperator(
         task_id="create_table",
@@ -107,4 +107,4 @@ with DAG(
         default_args=DEFAULT_ARGS,
     )
 
-    bq_to_gcs >> create_table >> dbt_models
+    create_table >> dbt_models

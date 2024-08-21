@@ -7,6 +7,7 @@ with fct_worker_shifts as (
 select
 
     taxi_id
+    , shift
     , round(
         avg(timestamp_diff(shift_end_timestamp, shift_start_timestamp, minute)), 1
     ) as avg_shift_period_minutes
@@ -19,7 +20,7 @@ where
     shift_total_trip_seconds > (16 * 60 * 60) -- 24 - 8hours of sleep
 
 group by
-    1
+    1, 2
 
 order by
     2 desc
