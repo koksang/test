@@ -1,6 +1,6 @@
-with dim_worker_shifts as (
+with fct_worker_shifts as (
 
-    select * from {{ ref("dim_worker_shifts") }}
+    select * from {{ ref("fct_worker_shifts") }}
 
 )
 
@@ -13,7 +13,7 @@ select
 
 
 from
-    dim_worker_shifts
+    fct_worker_shifts
 
 where
     shift_total_trip_seconds > (16 * 60 * 60) -- 24 - 8hours of sleep

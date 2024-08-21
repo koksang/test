@@ -1,23 +1,22 @@
-with fct_taxi_trips as (
+with fct_worker_shifts as (
 
-    select * from {{ ref("fct_taxi_trips") }}
+    select * from {{ ref("fct_worker_shifts") }}
 
 )
 
 select 
 
     taxi_id
-    , sum(trip_total) as earnings
+    , shift_total_earnings
 
 from
-    fct_taxi_trips
+    fct_worker_shifts
 
 where
-    trip_end_timestamp <= timestamp(date_add(current_date(), interval -3 month))
+    shift_end_timestamp <= timestamp(date_add(current_date(), interval -3 month))
 
-group by 
-    1
 order by 
     2 desc
+
 limit 
     100
