@@ -1,0 +1,20 @@
+defaults: &defaults
+  type: bigquery
+  method: oauth
+  location: US
+  priority: interactive
+  threads: 8
+  retries: 1
+  dataset: default
+  job_execution_timeout_seconds: 300
+
+main:
+  target: staging
+  outputs:
+    production:
+      <<: *defaults
+      project: mv-stg-etl
+
+    staging:
+      <<: *defaults
+      project: mv-stg-etl
