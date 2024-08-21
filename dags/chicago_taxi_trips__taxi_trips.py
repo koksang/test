@@ -7,6 +7,7 @@
 
 from __future__ import annotations
 
+import os
 from datetime import timedelta
 from pathlib import Path
 from textwrap import dedent
@@ -31,12 +32,12 @@ from cosmos.constants import InvocationMode
 from include.constants.dbt import DBT_IMAGE, DBT_PROJECT_DIR, PROFILE_CONFIG
 from pendulum import datetime
 
-HOLIDAY_TABLE_ID = "common.us_annual_public_holidays"
-BUCKET = "mv-stg-etl-data-artifacts"
-DATASET, TABLE = "chicago_taxi_trips", "taxi_trips"
+BUCKET = os.environ["BUCKET"]
 FORMAT, COMPRESSION = "PARQUET", "GZIP"
-GCS_OBJECT_URI = f"{DATASET}/{TABLE}/*.{COMPRESSION.lower()}.parquet"
+
 DAG_ID = Path(__file__).stem
+DATASET, TABLE = DAG_ID.split("__")
+GCS_OBJECT_URI = f"{DATASET}/{TABLE}/*.{COMPRESSION.lower()}.parquet"
 DEFAULT_ARGS = dict(
     owner="koksang",
     depends_on_past=False,

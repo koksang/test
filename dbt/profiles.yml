@@ -13,8 +13,8 @@ main:
   outputs:
     production:
       <<: *defaults
-      project: mv-stg-etl
+      project: "{{ env_var('PROJECT_ID') }}"
 
     staging:
       <<: *defaults
-      project: mv-stg-etl
+      project: "{{ env_var('PROJECT_ID') }}"

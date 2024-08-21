@@ -1,7 +1,7 @@
 version: 2
 sources:
   - name: common
-    database: mv-stg-etl
+    database: "{{ env_var('PROJECT_ID') }}"
     loader: airflow
     tables:
       - name: us_holidays

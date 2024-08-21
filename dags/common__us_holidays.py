@@ -15,9 +15,8 @@ from include.bigquery import load_df
 from include.helpers import us_annual_public_holidays
 from pendulum import datetime
 
-DATASET, TABLE = "common", "us_holidays"
-
 DAG_ID = Path(__file__).stem
+DATASET, TABLE = DAG_ID.split("__")
 DEFAULT_ARGS = dict(
     owner="koksang",
     depends_on_past=False,
