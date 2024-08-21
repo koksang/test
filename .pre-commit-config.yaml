@@ -1,0 +1,46 @@
+exclude: "archived/.*"
+fail_fast: true
+default_install_hook_types: [pre-commit]
+default_stages: [pre-commit]
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        exclude_types: [ sql ]
+      - id: end-of-file-fixer
+        exclude_types: [ sql ]
+      - id: check-yaml
+        args: [--unsafe]
+      - id: check-docstring-first
+        exclude: 'plugins/configs'
+      - id: trailing-whitespace
+        exclude_types:
+          - "markdown"
+      - id: check-case-conflict
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: "1.8.0"
+    hooks:
+      - id: poetry-check
+      - id: poetry-lock
+
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.4.9
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+        exclude: 'plugins/configs'
+      - id: ruff-format
+
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: "3.0.7"
+    hooks:
+      - id: sqlfluff-lint
+        entry: bash -c 'sqlfluff format && sqlfluff lint'
+        additional_dependencies:
+          ["dbt-bigquery==1.8.1", "sqlfluff-templater-dbt==3.0.7"]
+      # - id: sqlfluff-fix
+      #   entry: bash -c 'sqlfluff format && sqlfluff fix --show-lint-violations'
+      #   additional_dependencies:
+      #     ["dbt-bigquery==1.8.0", "sqlfluff-templater-dbt==3.0.7"]

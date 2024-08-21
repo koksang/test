@@ -14,10 +14,10 @@ apache-airflow = { version = "2.10.0", extras = [
     "postgres",
 ] }
 dbt-bigquery = "1.8.2"
-ruff = "^0.6.1"
-sqlfluff = "^3.1.0"
 regex = "^2024.7.24"
 pathlib = "^1.0.1"
+ruff = "^0.6.1"
+sqlfluff = "^3.1.0"
 sqlfluff-templater-dbt = "^3.1.0"
 astronomer-cosmos = { extras = ["dbt-bigquery"], version = "^1.6.0" }
 pandas = "^2.2.2"

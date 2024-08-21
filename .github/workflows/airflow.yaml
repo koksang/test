@@ -1,0 +1,59 @@
+name: Airflow
+run-name: ${{ github.ref.name }}
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+    branches:
+      - main
+      - staging
+    paths:
+      - dags/**
+      - dbt/**
+      - .sqlfluff
+      - poetry.lock
+  workflow_dispatch:
+
+env:
+  DBT_PROJECT_DIR: dbt
+jobs:
+  check-code:
+    name: check-code
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - id: checkout-code
+        name: Checkout code
+        uses: actions/checkout@v4
+      - id: ruff-check
+        name: Ruff check
+        run: |
+          pip install ruff
+          ruff check --force-exclude --exclude='${{ env.DBT_PROJECT_DIR }}' --fix --exit-non-zero-on-fix
+          ruff format --force-exclude
+
+  check-dbt:
+    name: check-dbt
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: SQLFluff check
+        run: |
+          pip install sqlfluff sqlfluff-templater-dbt
+          sqlfluff fix --show-lint-violations
+          sqlfluff lint
+      - name: Test DBT
+        working-directory: ${{ env.DBT_PROJECT_DIR }}
+        run: |
+          pip install dbt-bigquery
+          dbt deps --log-level error --no-send-anonymous-usage-stats
+          dbt debug
+          dbt compile
+          dbt test -m "test_type:unit"
