@@ -19,7 +19,12 @@ sqlfluff = "^3.1.0"
 regex = "^2024.7.24"
 pathlib = "^1.0.1"
 sqlfluff-templater-dbt = "^3.1.0"
+astronomer-cosmos = { extras = ["dbt-bigquery"], version = "^1.6.0" }
+pandas = "^2.2.2"
+holidays = "^0.55"
 
+[tool.poetry-version-plugin]
+source = "init"
 
 [build-system]
 requires = ["poetry-core"]

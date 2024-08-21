@@ -1,0 +1,56 @@
+version: 2
+sources:
+  - name: chicago_taxi_trips
+    database: mv-stg-etl
+    loader: airflow
+    tables:
+      - name: taxi_trips
+        columns:
+          - name: unique_key
+            data_type: STRING
+            meta:
+              mode: REQUIRED
+          - name: taxi_id
+            data_type: STRING
+          - name: trip_start_timestamp
+            data_type: TIMESTAMP
+          - name: trip_end_timestamp
+            data_type: TIMESTAMP
+          - name: trip_seconds
+            data_type: INT64
+          - name: trip_miles
+            data_type: FLOAT
+          - name: pickup_census_tract
+            data_type: INT64
+          - name: dropoff_census_tract
+            data_type: INT64
+          - name: pickup_community_area
+            data_type: INT64
+          - name: dropoff_community_area
+            data_type: INT64
+          - name: fare
+            data_type: FLOAT
+          - name: tips
+            data_type: FLOAT
+          - name: tolls
+            data_type: FLOAT
+          - name: extras
+            data_type: FLOAT
+          - name: trip_total
+            data_type: FLOAT
+          - name: payment_type
+            data_type: STRING
+          - name: company
+            data_type: STRING
+          - name: pickup_latitude
+            data_type: FLOAT
+          - name: pickup_longitude
+            data_type: FLOAT
+          - name: pickup_location
+            data_type: STRING
+          - name: dropoff_latitude
+            data_type: FLOAT
+          - name: dropoff_longitude
+            data_type: FLOAT
+          - name: dropoff_location
+            data_type: STRING

@@ -1,0 +1,14 @@
+version: 2
+sources:
+  - name: common
+    database: mv-stg-etl
+    loader: airflow
+    tables:
+      - name: us_holidays
+        columns:
+          - name: date
+            data_type: date
+            meta:
+              mode: REQUIRED
+          - name: name
+            data_type: STRING
