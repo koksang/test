@@ -10,7 +10,7 @@ with fct_worker_shifts as (
 
 )
 
-select 
+select
 
     holidays.date as holiday_date
     , holidays.name as holiday_name
@@ -18,10 +18,10 @@ select
 
 from
     us_holidays as holidays
-left join 
+left join
     fct_worker_shifts as shifts
-on 
-    shifts.shift = holidays.date
+on
+    holidays.date = shifts.shift
 group by
     1, 2
 order by

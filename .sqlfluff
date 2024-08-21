@@ -1,0 +1,65 @@
+[sqlfluff]
+dialect = bigquery
+templater = dbt
+runaway_limit = 10
+max_line_length = 100
+indent_unit = space
+large_file_skip_byte_limit = 40000
+processes = 0
+exclude_rules = RF04,AL01,AM06
+
+[sqlfluff:templater:dbt]
+profiles_dir = ./dbt
+project_dir = ./dbt
+profile = main
+
+[sqlfluff:indentation]
+indented_joins = False
+indented_using_on = False
+indented_ctes = False
+indented_then = False
+tab_space_size = 4
+trailing_comments = before
+ignore_comment_lines = False
+
+[sqlfluff:layout:type:comma]
+spacing_before = touch
+line_position = leading
+
+[sqlfluff:layout:type:comment]
+spacing_before = any
+spacing_after = any
+
+[sqlfluff:layout:type:alias_expression]
+spacing_before = align
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = lower
+align_within = select_clause
+align_scope = bracketed
+
+[sqlfluff:rules:aliasing.table]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.column]
+aliasing = explicit
+
+[sqlfluff:rules:aliasing.expression]
+allow_scalar = False
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = lower
+
+[sqlfluff:rules:ambiguous.column_references]  # Number in group by
+group_by_and_order_by_style = implicit
+
+[sqlfluff:rules:layout.long_lines]
+# Line length
+ignore_comment_lines = True
+ignore_comment_clauses = True

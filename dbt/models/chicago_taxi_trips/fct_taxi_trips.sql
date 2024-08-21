@@ -8,7 +8,6 @@ select
 
     unique_key
     , taxi_id
-    , date(trip_start_timestamp) as shift
     , trip_start_timestamp
     , trip_end_timestamp
     , trip_seconds
@@ -30,6 +29,7 @@ select
     , dropoff_latitude
     , dropoff_longitude
     , dropoff_location
+    , date(trip_start_timestamp) as shift
 
 from
     taxi_trips

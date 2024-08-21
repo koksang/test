@@ -1,0 +1,9 @@
+.github
+.ruff_cache
+.venv
+dags
+plugins
+
+dbt/target
+dbt/packages
+dbt/logs

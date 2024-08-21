@@ -4,7 +4,7 @@ with fct_worker_shifts as (
 
 )
 
-select 
+select
 
     taxi_id
     , shift_total_earnings
@@ -15,8 +15,8 @@ from
 where
     shift_end_timestamp <= timestamp(date_add(current_date(), interval -3 month))
 
-order by 
+order by
     2 desc
 
-limit 
+limit
     100

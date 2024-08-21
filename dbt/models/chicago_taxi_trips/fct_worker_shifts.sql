@@ -26,7 +26,7 @@ from
 
 {% if is_incremental() %}
 
-where shift >= ( select max(shift) from {{ this }} )
+    where shift >= (select max(shift) as max_shift from {{ this }})
 
 {% endif %}
 

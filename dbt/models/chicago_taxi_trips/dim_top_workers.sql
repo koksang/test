@@ -4,7 +4,7 @@ with fct_worker_shifts as (
 
 )
 
-select 
+select
 
     taxi_id
     , round(
@@ -24,5 +24,5 @@ group by
 order by
     2 desc
 
-limit 
+limit
     100
