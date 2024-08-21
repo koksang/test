@@ -1,3 +1,0 @@
-version: 1
-dbt-project-dir: test_dbt
-disable-tracking: true

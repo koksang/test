@@ -1,6 +1,6 @@
-with dim_worker_shifts as (
+with fct_worker_shifts as (
 
-    select * from {{ ref("dim_worker_shifts") }}
+    select * from {{ ref("fct_worker_shifts") }}
 
 )
 
@@ -19,7 +19,7 @@ select
 from
     us_holidays as holidays
 left join 
-    dim_worker_shifts as shifts
+    fct_worker_shifts as shifts
 on 
     shifts.shift = holidays.date
 group by
