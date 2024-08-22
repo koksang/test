@@ -116,6 +116,8 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
 
 2. A shift is defined by the **earliest** _trip_start_timestamp_ and **latest** _trip_end_timestamp_ in a single day
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- setup -->
 [gcp-url]: https://cloud.google.com
 [appauth-url]: https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable
