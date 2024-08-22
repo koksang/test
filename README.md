@@ -110,6 +110,12 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Assumptions
+
+1. Any taxi driver can only have maximum **1 shift a day**
+
+2. A shift is defined by the **earliest** _trip_start_timestamp_ and **latest** _trip_end_timestamp_ in a single day
+
 <!-- setup -->
 [gcp-url]: https://cloud.google.com
 [appauth-url]: https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable
