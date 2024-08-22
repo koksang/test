@@ -35,13 +35,12 @@ jobs:
         uses: actions/checkout@v4
       - name: SQLFluff check
         run: |
-          pip install -q sqlfluff sqlfluff-templater-dbt
+          pip install -q dbt-bigquery sqlfluff sqlfluff-templater-dbt
           sqlfluff fix --show-lint-violations
           sqlfluff lint
       - name: DBT test
         working-directory: ${{ env.DBT_DIR }}
         run: |
-          pip install -q dbt-bigquery
           dbt deps --log-level error --no-send-anonymous-usage-stats
           dbt debug
           dbt compile
