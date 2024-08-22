@@ -7,6 +7,7 @@ on:
 
 env:
   DBT_DIR: dbt
+  PROJECT_ID: mv-stg-etl
 jobs:
   check-code:
     name: check-code
@@ -40,7 +41,6 @@ jobs:
       - name: DBT test
         working-directory: ${{ env.DBT_DIR }}
         run: |
-          export PROJECT_ID="mv-stg-etl"
           pip install -q dbt-bigquery
           dbt deps --log-level error --no-send-anonymous-usage-stats
           dbt debug
