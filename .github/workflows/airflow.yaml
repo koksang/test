@@ -4,12 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - dags/**
-      - dbt/**
-      - .sqlfluff
-      - poetry.lock
-  workflow_dispatch:
 
 env:
   DBT_PROJECT_DIR: dbt

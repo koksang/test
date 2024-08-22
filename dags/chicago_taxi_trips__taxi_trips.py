@@ -19,9 +19,7 @@ from airflow.providers.google.cloud.operators.bigquery import (
     BigQueryCreateEmptyDatasetOperator,
     BigQueryCreateExternalTableOperator,
 )
-from airflow.providers.google.cloud.transfers.bigquery_to_gcs import (
-    BigQueryToGCSOperator,
-)
+from airflow.providers.google.cloud.transfers.bigquery_to_gcs import BigQueryToGCSOperator
 from cosmos import DbtTaskGroup, LoadMode, RenderConfig
 from include.constants.airflow import TableSchema
 from include.constants.dbt import EXECUTION_CONFIG, PROFILE_CONFIG, PROJECT_CONFIG
