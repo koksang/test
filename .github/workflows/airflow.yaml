@@ -37,14 +37,17 @@ jobs:
         run: |
           pip install -q sqlfluff sqlfluff-templater-dbt
           sqlfluff fix --show-lint-violations
-          sqlfluff lint
+          sqlfluff lint'
+      - id: test
+        working-directory: ${{ env.DBT_DIR }}
+        run: |
+          echo $(pwd)
+          echo $(ls -a)
       - id: dbt-test
         name: DBT test
         working-directory: ${{ env.DBT_DIR }}
         run: |
           pip install -q dbt-bigquery
-          echo $(pwd)
-          echo $(ls -a)
           dbt deps --log-level error --no-send-anonymous-usage-stats
           dbt debug
           dbt compile
