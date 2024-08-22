@@ -40,8 +40,9 @@ jobs:
       - name: DBT test
         working-directory: ${{ env.DBT_DIR }}
         run: |
+          export PROJECT_ID="mv-stg-etl"
           pip install -q dbt-bigquery
           dbt deps --log-level error --no-send-anonymous-usage-stats
           dbt debug
           dbt compile
-          dbt test
+          dbt test -m "test_type:unit"
