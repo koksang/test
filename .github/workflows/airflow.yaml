@@ -15,11 +15,9 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - id: checkout-code
-        name: Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
-      - id: ruff-check
-        name: Ruff check
+      - name: Ruff check
         run: |
           pip install -q ruff
           ruff check --force-exclude --exclude='${{ env.DBT_DIR }}' --fix --exit-non-zero-on-fix
@@ -32,19 +30,14 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - id: sqlfluff-check
-        name: SQLFluff check
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: SQLFluff check
         run: |
           pip install -q sqlfluff sqlfluff-templater-dbt
           sqlfluff fix --show-lint-violations
-          sqlfluff lint'
-      - id: test
-        working-directory: ${{ env.DBT_DIR }}
-        run: |
-          echo $(pwd)
-          echo $(ls -a)
-      - id: dbt-test
-        name: DBT test
+          sqlfluff lint
+      - name: DBT test
         working-directory: ${{ env.DBT_DIR }}
         run: |
           pip install -q dbt-bigquery
