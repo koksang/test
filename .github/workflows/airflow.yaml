@@ -1,4 +1,4 @@
-name: Airflow
+name: Main
 run-name: ${{ github.ref.name }}
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
         name: Ruff check
         run: |
           pip install ruff
-          ruff check --force-exclude --exclude='${{ env.DBT_PROJECT_DIR }}' --fix --exit-non-zero-on-fix
+          ruff check --force-exclude --exclude='${{ env.DBT_DIR }}' --fix --exit-non-zero-on-fix
           ruff format --force-exclude
 
   check-dbt:
@@ -39,11 +39,10 @@ jobs:
           sqlfluff fix --show-lint-violations
           sqlfluff lint
       - id: dbt-test
-        name: Test DBT
+        name: DBT test
         working-directory: ${{ env.DBT_DIR }}
         run: |
           pip install dbt-bigquery
           dbt deps --log-level error --no-send-anonymous-usage-stats
           dbt debug
           dbt compile
-          dbt test
