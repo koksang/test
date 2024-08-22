@@ -32,16 +32,18 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - name: SQLFluff check
+      - id: sqlfluff-check
+        name: SQLFluff check
         run: |
           pip install sqlfluff sqlfluff-templater-dbt
           sqlfluff fix --show-lint-violations
           sqlfluff lint
-      - name: Test DBT
+      - id: dbt-test
+        name: Test DBT
         working-directory: ${{ env.DBT_DIR }}
         run: |
           pip install dbt-bigquery
           dbt deps --log-level error --no-send-anonymous-usage-stats
           dbt debug
           dbt compile
-          dbt test -m "test_type:unit"
+          dbt test
