@@ -7,7 +7,7 @@ on:
 
 env:
   DBT_DIR: dbt
-  PROJECT_ID: mv-stg-etl
+  PROJECT_ID: ""
 jobs:
   check-code:
     name: check-code

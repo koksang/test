@@ -99,6 +99,10 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
 
 ## Output
 
+### DBT Lineage
+![dbt_lineage](dbt_lineage.png)
+
+### Visualization Dashboard
 ![insights_report](insights_report.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -107,6 +111,3 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
 [gcp-url]: https://cloud.google.com
 [appauth-url]: https://cloud.google.com/docs/authentication/getting-started#setting_the_environment_variable
 [poetry-url]: https://python-poetry.org/docs/#installation
-
-<!-- results -->
-[dashboard-url]: insights_report.png
