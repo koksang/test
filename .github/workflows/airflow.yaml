@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  DBT_PROJECT_DIR: dbt
+  DBT_DIR: dbt
 jobs:
   check-code:
     name: check-code
@@ -38,7 +38,7 @@ jobs:
           sqlfluff fix --show-lint-violations
           sqlfluff lint
       - name: Test DBT
-        working-directory: ${{ env.DBT_PROJECT_DIR }}
+        working-directory: ${{ env.DBT_DIR }}
         run: |
           pip install dbt-bigquery
           dbt deps --log-level error --no-send-anonymous-usage-stats
