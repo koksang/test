@@ -1,15 +1,9 @@
 name: Airflow
 run-name: ${{ github.ref.name }}
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - closed
+  push:
     branches:
       - main
-      - staging
     paths:
       - dags/**
       - dbt/**
