@@ -41,11 +41,12 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
     $ git clone https://github.com/koksang/test.git
     ```
 
-2. To install dependencies locally especially **DBT**, you can do
-    Use *makefile*
+2. To install dependencies, you can
+
     * Makefile
         ```console
-        $ make setup-environment
+        $ poetry install
+        $ poetry shell
         ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -86,6 +87,13 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
         ```
 
     * Go to airflow and login using username: `admin` and password: `admin`
+
+3. To exit poetry shell, you can
+
+    * poetry
+        ```console
+        $ exit
+        ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
