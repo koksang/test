@@ -99,11 +99,14 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
 
 ## Output
 
-### DBT Lineage
-![dbt_lineage](dbt_lineage.png)
+1. Airflow Dag
+![dbt_lineage](images/airflow_dag.png)
 
-### Visualization Dashboard
-![insights_report](insights_report.png)
+2. DBT Lineage
+![dbt_lineage](images/dbt_lineage.png)
+
+3. Visualization Dashboard
+![insights_report](images/insights_report.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
