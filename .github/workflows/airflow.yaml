@@ -41,6 +41,7 @@ jobs:
       - name: DBT test
         working-directory: ${{ env.DBT_DIR }}
         run: |
+          pip install -q dbt-bigquery
           dbt deps --log-level error --no-send-anonymous-usage-stats
           dbt debug
           dbt compile
