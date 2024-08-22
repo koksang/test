@@ -6,7 +6,8 @@ import os
 from pathlib import Path
 
 from airflow.configuration import conf
-from cosmos import ProfileConfig
+from cosmos import ExecutionConfig, ExecutionMode, ProfileConfig, ProjectConfig
+from cosmos.constants import InvocationMode
 from include.constants.airflow import Environment
 from include.helpers import airflow_environment
 
@@ -29,4 +30,9 @@ PROFILE_CONFIG = ProfileConfig(
     profile_name="main",
     target_name=getattr(DbtTarget, airflow_environment()),
     profiles_yml_filepath=Path(DBT_PROFILES_DIR, "profiles.yml"),
+)
+PROJECT_CONFIG = ProjectConfig(dbt_project_path=DBT_PROJECT_DIR)
+EXECUTION_CONFIG = ExecutionConfig(
+    execution_mode=ExecutionMode.LOCAL,
+    invocation_mode=InvocationMode.DBT_RUNNER,
 )

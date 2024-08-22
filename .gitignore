@@ -294,3 +294,5 @@ $RECYCLE.BIN/
 *.pid
 *.db
 airflow.cfg
+*.pdf
+webserver_config.py

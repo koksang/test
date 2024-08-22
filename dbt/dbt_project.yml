@@ -31,15 +31,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   test_dbt:
-    default:
-      +tags: ["default"]
-      +materialized: view
+    # common:
+    #   +tags: ["common"]
+    #   +materialized: view
       
     chicago_taxi_trips:
       +tags: ["chicago_taxi_trips"]
       +materialized: view
-
-snapshots:
-  test_dbt:
-    chicago_taxi_trips:
-      +target_schema: "chicago_taxi_trips"

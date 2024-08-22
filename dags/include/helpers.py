@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 import os
 from datetime import datetime
 
@@ -48,3 +49,37 @@ def us_annual_public_holidays(year: int = datetime.now().year) -> pd.DataFrame:
     )
 
     return pd.DataFrame(public_holidays)
+
+
+def check_table_exists(
+    dataset_id: str,
+    table_id: str,
+    success_task_id: str,
+    failure_task_id: str,
+    project_id: str = os.environ["PROJECT_ID"],
+) -> str:
+    from airflow.providers.google.cloud.hooks.bigquery import BigQueryHook
+
+    if BigQueryHook().table_exists(
+        project_id=project_id, dataset_id=dataset_id, table_id=table_id
+    ):
+        return success_task_id
+    else:
+        return failure_task_id
+
+
+def task_fail_alert(context) -> None:
+    """Task failure callback
+
+    Args:
+        context (dict): Airflow context
+    """
+    # NOTE: send alert message to channels like email or slack
+    logging.error(
+        f"""
+    :red_circle: Task Failed - Alert.
+    *Task*: {context.get('task_instance').task_id}
+    *Dag*: {context.get('task_instance').dag_id}
+    *Execution Time*: {context.get('execution_date')}
+    """
+    )
