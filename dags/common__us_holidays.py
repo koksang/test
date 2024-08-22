@@ -12,7 +12,7 @@ from textwrap import dedent
 from airflow.models import DAG
 from airflow.operators.python import PythonOperator
 from include.bigquery import load_df
-from include.helpers import us_annual_public_holidays
+from include.helpers import task_fail_alert, us_annual_public_holidays
 from pendulum import datetime
 
 DAG_ID = Path(__file__).stem
@@ -22,6 +22,7 @@ DEFAULT_ARGS = dict(
     depends_on_past=False,
     retries=2,
     retry_delay=timedelta(minutes=5),
+    task_fail_alert=task_fail_alert,
 )
 PARAMS = dict(start_timestamp=None, end_timestamp=None)
 
