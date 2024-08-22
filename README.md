@@ -43,7 +43,7 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
 
 2. To install dependencies, you can
 
-    * Makefile
+    * poetry
         ```console
         $ poetry install
         $ poetry shell
@@ -55,7 +55,7 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
 ## Usage
 
 1. Setup environment
-    * Use `.env`
+    * Use _.env_
         ```console
         $ touch .env
         $ echo "AIRFLOW_HOME=${YOUR PATH TO AIRFLOW_HOME}" >> .env
