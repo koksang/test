@@ -21,7 +21,7 @@ jobs:
       - id: ruff-check
         name: Ruff check
         run: |
-          pip install ruff
+          pip install -q ruff
           ruff check --force-exclude --exclude='${{ env.DBT_DIR }}' --fix --exit-non-zero-on-fix
           ruff format --force-exclude
 
@@ -35,10 +35,17 @@ jobs:
       - id: sqlfluff-check
         name: SQLFluff check
         run: |
-          pip install sqlfluff sqlfluff-templater-dbt
+          pip install -q sqlfluff sqlfluff-templater-dbt
           sqlfluff fix --show-lint-violations
           sqlfluff lint
       - id: dbt-test
         name: DBT test
+        working-directory: ${{ env.DBT_DIR }}
         run: |
-          ls
+          pip install -q dbt-bigquery
+          echo $(pwd)
+          echo $(ls -a)
+          dbt deps --log-level error --no-send-anonymous-usage-stats
+          dbt debug
+          dbt compile
+          dbt test
