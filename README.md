@@ -85,6 +85,8 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
         $ airflow scheduler
         ```
 
+    * Go to airflow and login using username: `admin` and password: `admin`
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Output
