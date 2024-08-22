@@ -39,8 +39,8 @@ repos:
       - id: sqlfluff-lint
         entry: bash -c 'sqlfluff format && sqlfluff lint'
         additional_dependencies:
-          ["dbt-bigquery==1.8.1", "sqlfluff-templater-dbt==3.0.7"]
-      # - id: sqlfluff-fix
-      #   entry: bash -c 'sqlfluff format && sqlfluff fix --show-lint-violations'
-      #   additional_dependencies:
-      #     ["dbt-bigquery==1.8.0", "sqlfluff-templater-dbt==3.0.7"]
+          ["dbt-bigquery==1.8.2", "sqlfluff-templater-dbt==3.0.7"]
+      - id: sqlfluff-fix
+        entry: bash -c 'sqlfluff format && sqlfluff fix --show-lint-violations'
+        additional_dependencies:
+          ["dbt-bigquery==1.8.2", "sqlfluff-templater-dbt==3.0.7"]
