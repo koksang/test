@@ -11,6 +11,7 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#output">Usage</a></li>
   </ol>
 </details>
 
@@ -18,9 +19,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-![insights_report](insights_report.png)
-
-Currently, the setup can only be done in a single machine. Everything is in containers, runs on docker-compose, so you will need docker installed.
+Currently, the setup can only be done in a single machine.
 
 ### Prerequisites
 
@@ -43,35 +42,10 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
     ```
 
 2. To install dependencies locally especially **DBT**, you can do
-    * Poetry
-
+    Use *makefile*
+    * Makefile
         ```console
-        $ poetry install
-        ```
-    Or if you use *pip*
-    * Pip
-        ```console
-        $ poetry export -f requirements.txt --without-hashes
-        $ pip install -r requirements.txt
-
-        ---> 100%
-        ```
-
-3. Start `docker-compose.yaml` by doing as below. It will start in detached mode
-
-    ```console
-    $ docker-compose -f infra/docker-compose.yaml up -d
-    ```
-
-4. Set environment variables
-    * Google Cloud specific
-
-        ```console
-        $ export AIRFLOW_HOME=${YOUR PATH TO AIRFLOW_HOME}
-        $ export DBT_PROJECT_DIR=${YOUR DBT_PROJECT_DIR}
-        $ export DBT_PROFILES_DIR=${YOUR DBT_PROFILES_DIR}
-        $ export PROJECT_ID=${YOUR GCP PROJECT_ID}
-        $ export BUCKET=${YOUR GCS BUCKET}
+        $ make setup-environment
         ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -79,7 +53,19 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. Start a local airflow cluster
+1. Setup environment
+    * Use `.env`
+        ```console
+        $ touch .env
+        $ echo "AIRFLOW_HOME=${YOUR PATH TO AIRFLOW_HOME}" >> .env
+        $ echo "DBT_PROJECT_DIR=${YOUR DBT_PROJECT_DIR}" >> .env
+        $ echo "DBT_PROFILES_DIR=${YOUR DBT_PROFILES_DIR}" >> .env
+        $ echo "PROJECT_ID=${YOUR GCP PROJECT_ID}" >> .env
+        $ echo "BUCKET=${YOUR GCS BUCKET}" >> .env
+        $ set -a && source .env
+        ```
+
+2. Start a local airflow cluster
     * Create airflow database
 
         ```console
@@ -99,6 +85,11 @@ You will need python libraries and dependency manager such as *pip*. I use *poet
         $ airflow scheduler
         ```
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Output
+
+![insights_report](insights_report.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
